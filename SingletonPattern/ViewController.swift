@@ -14,14 +14,15 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
 
-        let singleton = try! Singleton().sharedInstance()
+        let singleton        = try! Singleton.sharedInstance()
+        let anotherSingleton = try! Singleton.sharedInstance()
         
         print(singleton)
-        
+        print(anotherSingleton)
         /* ---不能被子类继承--*/
-//        let subSingleton = try! SubSingleton()
-//        
-//        print(subSingleton)
+        let subSingleton = try! SubSingleton.sharedInstance()
+
+        print(subSingleton)
     }
 
 }

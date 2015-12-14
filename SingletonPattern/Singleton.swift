@@ -15,10 +15,10 @@ enum SingletonError : ErrorType {
 
 class Singleton {
     
-    /* ---不能被子类调用--*/
-    final func sharedInstance() throws -> Singleton {
+    /* --不能被子类调用-- */
+    static func sharedInstance() throws -> Singleton {
         
-        guard self.dynamicType == Singleton.self else {
+        guard self == Singleton.self else {
         
             print("--------Can't be inherited !--------")
             throw SingletonError.CannotBeInherited
@@ -26,19 +26,13 @@ class Singleton {
         
         struct Static {
 
-            static let sharedInstance = try! Singleton()
+            static let sharedInstance = Singleton()
         }
         
         return Static.sharedInstance
     }
     
-    /* ---不能被子类继承--*/
-    init() throws {
-    
-        guard self.dynamicType == Singleton.self else {
-        
-            print("********Can't be inherited !********")
-            throw SingletonError.CannotBeInherited
-        }
+    private init()  {
+
     }
 }
